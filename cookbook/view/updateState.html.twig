@@ -1,0 +1,29 @@
+{% extends 'layout.html.twig' %}
+
+{% block content%}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Estados</h1>
+        <h3 class="text-center">Editar Estado {{ estado['nombre'] }}</h3>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        {% if reports  %}
+        <div class='alert alert-danger'>
+            {% for report in reports %}
+                {{ report }}
+            {% endfor  %}
+        </div>
+        {% endif %}
+        <form role="form" action="/cookbook/controller/updateStateController.php" method="POST">
+            <div class="form-group">
+                <input type='hidden' value='{{estado['id_estado']}}' name='idEstado' />
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value='{{ estado['nombre'] }}'>
+            </div>
+            <input type="submit" class="btn btn-success" value="Confirmar" />
+        </form>
+    </div>
+{% endblock %}

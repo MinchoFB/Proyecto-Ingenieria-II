@@ -1,0 +1,40 @@
+<div class = "navbar navbar-default navbar-fixed-top">
+    <div class = "container">
+        <div class = ".navbar-header">
+            <a href = "#" class="navbar-brand">
+                <img style="max-width:90px; margin-top: -10px" src="../view/img/logoTransp.png">
+            </a>
+ {#           {% if logged %}
+                    <a href = "#" class = "navbar-brand">Hola {{ logged['nombrePersona'] }}</a>
+              {% else %}
+                    <a href = "#" class = "navbar-brand">Inicio de</a>
+              {% endif %}#}
+        </div>
+        <div class = ".navbar-header">
+            <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navHeaderCollapse">
+                <span class = "icon-bar"></span>
+                <span class = "icon-bar"></span>
+                <span class = "icon-bar"></span>
+            </button>
+        </div>
+
+        <div class = "collapse navbar-collapse navHeaderCollapse">
+            <ul class = "nav navbar-nav navbar-right">
+                {% if logged %}
+                    <li class ="active"><a href = "/cookbook/controller/normalUserController.php">Inicio</a></li>
+                {% else %}
+                    <li class ="active"><a href = "/cookbook/controller/homeController.php">Inicio</a></li>
+                {% endif %}
+                <li><a href = "#">Cat&aacute;logo</a></li>
+                <li><a href = "/cookbook/controller/contactController.php" data-toggle="modal">Contacto</a></li>
+                {% if logged %}
+                    <li><a href = "/cookbook/controller/normalUserAccountController.php" data-toggle="modal">Mi Cuenta</a></li>
+                    <li><a href = "/cookbook/controller/logoutController.php" data-toggle="modal">Cerrar Sesion</a></li>
+                {% else %}
+                    <li><a href = "/cookbook/controller/loginController.php" data-toggle="modal">Ingresar</a></li>
+                    <li><a href = "/cookbook/controller/registerController.php" data-toggle="modal">Registrarme</a></li>
+                {% endif %} 
+            </ul>
+        </div>
+    </div>
+</div>

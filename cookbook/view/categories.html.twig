@@ -1,0 +1,54 @@
+{% extends 'layout.html.twig' %}
+
+{% block content%}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Categorías</h1>
+        <h3 class="text-center">Listado de Categorías</h3>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        
+        {% if reports  %}
+        <div class='alert alert-danger'>
+            {% for report in reports %}
+                {{ report }}
+            {% endfor  %}
+        </div>
+        {% endif %}
+        
+        <a href='/cookbook/controller/addCategoryController.php' class='btn btn-info'>Agregar Nueva</a>
+
+        <table class='table table-hover'>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for c in categorias %}
+                <tr>
+                    <td> {{ c['nombre'] }} </td>
+            {% if c['activo'] != 0 %}
+                    <td class='text-success'> SI </td>
+            {% else %}
+                    <td class='text-danger'> NO </td>
+            {% endif %}
+                    <td>
+                        <a href='/cookbook/controller/updateCategoryController.php?idCategoria={{ c['id_categoria'] }}' class='btn btn-warning btn-xs'>Editar</a>
+                        <a href='/cookbook/controller/toggleCategoryController.php?idCategoria={{ c['id_categoria'] }}' class='btn btn-success btn-xs'>Hab/Des</a>
+                        <a href='/cookbook/controller/deleteCategoryController.php?idCategoria={{ c['id_categoria'] }}' class='btn btn-danger btn-xs'>Eliminar</a>
+                    </td>
+                </tr>
+        {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

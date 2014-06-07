@@ -1,0 +1,68 @@
+{% extends 'layout.html.twig' %}
+
+{% block content%}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+
+        {% if reports  %}
+        <div class="alert alert-success">
+            {% for report in reports %}
+            <p><strong>{{ report }}</strong></p>
+            {% endfor  %}
+        </div>
+        {% endif %}
+
+        {% if errors  %}
+        <div class="alert alert-danger">
+            {% for error in errors %}
+            <p>{{ error }}</p>
+            {% endfor  %}
+        </div>
+        {% endif %}
+
+        <div class="alert alert-info">
+            <p>- Todos los campos con (*) son obligatorios.</p>
+            <p>- El password debe contener entre 5 y 12 caracteres y al menos 1 mayúscula, 1 minúscula y un número.</p>
+            <p>- El nombre y apellido solo deben contener caracteres alfabeticos y espacios.</p>
+            <p>- El dni debe contener entre 7 u 8 números.</p>
+        </div>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+
+        <div class="login-panel panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Por favor ingrese sus datos</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form" action="/cookbook/controller/registerController.php" method="POST">
+                    <fieldset>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="E-Mail" name="email" type="email" value='{{ email }}' autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Confirmar E-Mail" name="emailCheck" type="email" value='{{ emailCheck }}' required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Password" name="password" type="password" value='{{ password }}' required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Confirmar Password" name="passwordCheck" type="password" value='{{ passwordCheck }}' required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Nombre" name="nombre" type="text" value='{{ nombre }}' required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="Apellido" name="apellido" type="text" value='{{ apellido }}' required>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" placeholder="DNI" name="dni" type="text" value='{{ dni }}' required>
+                        </div>
+                        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Confirmar">
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

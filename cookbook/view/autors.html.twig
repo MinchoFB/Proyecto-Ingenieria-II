@@ -1,0 +1,54 @@
+{% extends 'layout.html.twig' %}
+
+{% block content%}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="text-center">Autores</h1>
+        <h3 class="text-center">Listado de Autores</h3>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        
+        {% if reports  %}
+        <div class='alert alert-danger'>
+            {% for report in reports %}
+                {{ report }}
+            {% endfor  %}
+        </div>
+        {% endif %}
+        
+        <a href='/cookbook/controller/addStateController.php' class='btn btn-info'>Agregar Nuevo</a>
+
+        <table class='table table-hover'>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for a in autores %}
+                <tr>
+                    <td> {{ a['nombre'] }} </td>
+            {% if a['activo'] != 0 %}
+                    <td class='text-success'> SI </td>
+            {% else %}
+                    <td class='text-danger'> NO </td>
+            {% endif %}
+                    <td>
+                        <a href='/cookbook/controller/updateAutorController.php?idAutor={{ a['id_autor'] }}' class='btn btn-warning btn-xs'>Editar</a>
+                        <a href='/cookbook/controller/toggleAutorController.php?idAutor={{ a['id_autor'] }}' class='btn btn-success btn-xs'>Hab/Des</a>
+                        <a href='/cookbook/controller/deleteAutorController.php?idAutor={{ a['id_autor'] }}' class='btn btn-danger btn-xs'>Eliminar</a>
+                    </td>
+                </tr>
+        {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

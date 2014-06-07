@@ -1,0 +1,25 @@
+/*esto evita que el footer tape contenido en caso de que se use el scroll hacia abajo*/
+body {
+    margin-bottom: 80px;
+}
+
+.carousel {
+  margin-bottom: 60px;
+ /* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
+  margin-top: 5px;
+}
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  min-height: 200px;
+  max-height: 450px;
+}
+.carousel-inner > .item > img {
+  width: 100%;
+  max-width: 100%;
+}
